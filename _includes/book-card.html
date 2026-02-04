@@ -21,10 +21,11 @@
     <div class="gsp-book-actions">
       {% assign cs = page.book.coming_soon | default: false %}
 
-      {% if cs != true and page.book.buy_url %}
+      {% if cs == true %}
+      <span class="button small disabled">Coming soon</span>
+      {% elsif page.book.buy_url %}
       <a href="{{ page.book.buy_url }}" class="button small">Buy</a>
       {% endif %}
-
       {% if include.details_url %}
       <a href="{{ include.details_url | relative_url }}" class="button small alt">Details</a>
       {% endif %}
