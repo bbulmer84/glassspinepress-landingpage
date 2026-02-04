@@ -1,0 +1,59 @@
+<div id="sidebar">
+  <div class="inner">
+
+    <a href="/" class="gsp-menu-brand">
+      <img src="/images/logo/black_logo_white_bg.svg" alt="Glass Spine Press" />
+      <span>Glass Spine Press</span>
+    </a>
+
+    <!-- Menu -->
+    <nav id="menu">
+      <ul>
+        <li><a href="/">Home</a></li>
+
+        {% if site.series %}
+        {% assign series_list = site.series | sort: "series.order" %}
+        {% else %}
+        {% assign series_list = "" | split: "" %}
+        {% endif %}
+
+        {% if series_list.size > 0 %}
+        <li>
+          <span class="opener">Series</span>
+          <ul>
+            <li><a href="{{ '/series/' | relative_url }}"><strong>All Series</strong></a></li>
+            {% for s in series_list %}
+            <li><a href="{{ s.url | relative_url }}">{{ s.series.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endif %}
+        <li><a href="/books/">Books</a></li>
+        <li><a href="https://store.glassspinepress.com.au">Store</a></li>
+        <li><a href="/about/">About the Author</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Section -->
+    <section>
+      <header class="major">
+        <h2>Get in touch</h2>
+      </header>
+
+      <p>
+        Glass Spine Press welcomes genuine enquiries related to its published work.
+        For rights, permissions, or general correspondence, please use the contact details below.
+      </p>
+
+      <ul class="contact">
+        <li class="icon solid fa-envelope">
+          <a href="mailto:contact@glassspinepress.com">contact@glassspinepress.com</a>
+        </li>
+      </ul>
+    </section>
+
+    {% include footer.html %}
+
+  </div>
+</div>

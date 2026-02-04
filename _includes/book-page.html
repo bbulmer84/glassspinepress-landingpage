@@ -1,0 +1,113 @@
+<section class="gsp-book-hero">
+  <header class="main">
+    <h1>{{ page.book.title }}</h1>
+  </header>
+
+  {% if page.book.tagline %}
+  <p class="gsp-book-tagline">{{ page.book.tagline }}</p>
+  {% endif %}
+</section>
+
+<section class="gsp-book-layout">
+  <div class="gsp-book-cover">
+    <img src="{{ page.book.cover }}" alt="{{ page.book.title }} cover" />
+  </div>
+
+  <div class="gsp-book-meta">
+    <ul class="alt">
+
+      {% if page.book.series %}
+      <li><strong>Series:</strong> {{ page.book.series }}</li>
+      {% endif %}
+
+      {% if page.book.format %}
+      <li><strong>Format:</strong> {{ page.book.format }}</li>
+      {% endif %}
+
+      {% if page.book.status %}
+      <li><strong>Status:</strong> {{ page.book.status }}</li>
+      {% endif %}
+
+      {% if page.book.release %}
+      <li><strong>Release:</strong> {{ page.book.release }}</li>
+      {% endif %}
+
+      {% if page.book.isbn %}
+      <li><strong>ISBN:</strong> {{ page.book.isbn }}</li>
+      {% endif %}
+
+    </ul>
+
+    <div class="gsp-book-actions">
+
+      {% if page.book.coming_soon != true %}
+      {% assign resolved_buy_url = page.book.buy_url | default: site.store_url %}
+      {% if resolved_buy_url %}
+      <a href="{{ resolved_buy_url }}" class="button small">Buy</a>
+      {% endif %}
+      {% endif %}
+
+      {% if page.book.series and page.book.series_url %}
+      <a href="{{ page.book.series_url | relative_url }}" class="button small alt">Back to series</a>
+      {% elsif page.book.books_index_url %}
+      <a href="{{ page.book.books_index_url | relative_url }}" class="button small alt">Back to books</a>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+{% if page.book.blurb %}
+<section>
+  <header class="major">
+    <h2>Blurb</h2>
+  </header>
+
+  <!-- markdownify often outputs its own <p> tags, so don't wrap it in <p> -->
+  <div class="gsp-book-blurb">
+    {{ page.book.blurb | markdownify }}
+  </div>
+</section>
+{% endif %}
+
+{% if page.book.details %}
+<section>
+  <header class="major">
+    <h2>Details</h2>
+  </header>
+  <ul>
+    {% for item in page.book.details %}
+    {% if item.label %}
+    <li><strong>{{ item.label }}:</strong> {{ item.value }}</li>
+    {% else %}
+    <li>{{ item }}</li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": {{ page.book.title | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": "Brenton Bulmer"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Glass Spine Press"
+  },
+  "genre": {{ page.book.genre | default: "Speculative Fiction" | jsonify }},
+  "inLanguage": {{ page.book.language | default: "en" | jsonify }},
+  "url": {{ site.url | append: page.url | jsonify }}{% if page.book.cover %},
+  "image": {{ site.url | append: page.book.cover | jsonify }}{% endif %}{% if page.book.series %},
+  "isPartOf": {
+    "@type": "BookSeries",
+    "name": {{ page.book.series | jsonify }}
+  }{% endif %}
+}
+</script>

@@ -1,0 +1,93 @@
+{% comment %}
+Auto mode:
+- Pull from site.books where b.book.series == include.series.name
+- Sort by b.book.order (recommended)
+Fallback mode:
+- Use include.books (your manual list in the series front matter)
+{% endcomment %}
+
+{% assign title = include.title | default: "Reading Order" %}
+
+{% assign auto_books = "" | split: "" %}
+{% if include.series and include.series.name and site.books %}
+{% assign auto_books = site.books | where_exp: "b", "b.book.series == include.series.name" | sort: "book.order" %}
+{% endif %}
+
+{% assign books_to_show = auto_books %}
+{% if books_to_show == nil or books_to_show.size == 0 %}
+{% assign books_to_show = include.books %}
+{% endif %}
+
+{% if books_to_show and books_to_show.size > 0 %}
+<section class="gsp-reading-order">
+  <header class="major">
+    <h2>{{ title }}</h2>
+  </header>
+
+  <div class="gsp-standalone-grid">
+    {% for item in books_to_show %}
+
+    {%- comment -%}
+    If it came from site.books, "item" is the page.
+    If it came from series front matter, "item" is a plain hash.
+    Normalize into variables.
+    {%- endcomment -%}
+
+    {% if item.book %}
+    {% assign cover = item.book.cover %}
+    {% assign btitle = item.book.title %}
+    {% assign status = item.book.status %}
+    {% assign release = item.book.release %}
+    {% assign desc = item.book.tagline | default: item.book.desc %}
+    {% assign details_url = item.url %}
+    {% assign buy_url = item.book.buy_url %}
+    {% assign coming_soon = item.book.coming_soon %}
+    {% else %}
+    {% assign cover = item.cover %}
+    {% assign btitle = item.title %}
+    {% assign status = item.status %}
+    {% assign release = item.release %}
+    {% assign desc = item.desc %}
+    {% assign details_url = item.details_url %}
+    {% assign buy_url = item.buy_url %}
+    {% assign coming_soon = item.coming_soon %}
+    {% endif %}
+
+    <article class="gsp-book-card">
+      <div class="gsp-book-cover">
+        <img src="{{ cover }}" alt="{{ btitle }} cover" />
+      </div>
+
+      <div class="gsp-book-meta">
+        <h3 class="gsp-book-title">{{ btitle }}</h3>
+
+        {% if status or release %}
+        <p class="gsp-book-submeta">
+          {% if status %}<span><strong>Status:</strong> {{ status }}</span>{% endif %}
+          {% if status and release %} &nbsp;•&nbsp; {% endif %}
+          {% if release %}<span><strong>Release:</strong> {{ release }}</span>{% endif %}
+        </p>
+        {% endif %}
+
+        {% if desc %}
+        <p class="gsp-book-desc">{{ desc }}</p>
+        {% endif %}
+
+        <div class="gsp-book-actions">
+          {% if page.book.coming_soon != true %}
+          {% assign resolved_buy_url = page.book.buy_url | default: site.store_url %}
+          {% if resolved_buy_url %}
+          <a href="{{ resolved_buy_url }}" class="button small">Buy</a>
+          {% endif %}
+          {% endif %}
+          {% if details_url %}
+          <a href="{{ details_url }}" class="button small alt">Details</a>
+          {% endif %}
+        </div>
+      </div>
+    </article>
+
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

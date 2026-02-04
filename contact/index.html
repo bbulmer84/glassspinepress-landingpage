@@ -1,0 +1,111 @@
+---
+layout: default
+title: Contact — Glass Spine Press
+---
+
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<section class="gsp-home-intro">
+  <div class="gsp-logo-header">
+    <img src="/images/logo/black_logo_whitebg_text_header.svg" alt="Glass Spine Press" />
+  </div>
+</section>
+
+<header class="major">
+  <h2>Contact</h2>
+</header>
+
+<section>
+  <p>
+    For rights, permissions, media enquiries, retailer queries, or reader correspondence,
+    use the form below or email directly.
+  </p>
+
+  <div class="row gtr-200">
+    <div class="col-8 col-12-medium">
+      <p class="gsp-required-note">
+        Fields marked with <span style="color:#e26d5c">*</span> are required.
+      </p>
+
+      <form id="gsp-contact-form" method="post" action="https://formspree.io/f/xnjdkdyq">
+        <input type="hidden" name="_subject" value="Glass Spine Press — Contact Form" />
+
+        <!-- Honeypot -->
+        <div style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+          <label for="company">Company</label>
+          <input type="text" name="company" id="company" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="row gtr-uniform">
+          <div class="col-6 col-12-xsmall">
+            <label for="name" class="gsp-required">Name</label>
+            <input type="text" name="name" id="name" placeholder="Name" required />
+          </div>
+
+          <div class="col-6 col-12-xsmall">
+            <label for="email" class="gsp-required">Email</label>
+            <input type="email" name="email" id="email" placeholder="Email" required />
+          </div>
+
+          <div class="col-12">
+            <label for="subject" class="gsp-required">Subject</label>
+            <input type="text" name="subject" id="subject" placeholder="Subject" required />
+          </div>
+
+          <div class="col-12">
+            <label for="message" class="gsp-required">Message</label>
+            <textarea name="message" id="message" placeholder="Message" rows="7" required></textarea>
+          </div>
+
+          <!-- Turnstile -->
+          <div class="col-12">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAACUh7jDCIHCaWwAf" data-theme="auto"></div>
+          </div>
+
+          <div class="col-12">
+            <ul class="actions">
+              <li><input id="gsp-submit" type="submit" value="Send Message" class="primary" /></li>
+              <li><input type="reset" value="Clear" /></li>
+            </ul>
+          </div>
+        </div>
+      </form>
+
+      <div id="gsp-form-status" class="gsp-form-status" role="status" aria-live="polite"></div>
+
+      <p style="margin-top: 1.25rem; opacity: 0.8;">
+        If the form is unavailable, email us directly at
+        <a href="mailto:contact@glassspinepress.com">contact@glassspinepress.com</a>.
+      </p>
+    </div>
+
+    <div class="col-4 col-12-medium">
+      <div class="box">
+        <h3>Contact details</h3>
+        <ul class="contact">
+          <li class="icon solid fa-envelope">
+            <a href="mailto:contact@glassspinepress.com">contact@glassspinepress.com</a>
+          </li>
+        </ul>
+
+        <hr />
+
+        <h3>Enquiries</h3>
+        <ul>
+          <li>Press & media</li>
+          <li>Retailer / wholesale</li>
+          <li>Rights & permissions</li>
+          <li>Website issues</li>
+          <li>Reader feedback</li>
+        </ul>
+
+        <p style="margin-bottom: 0;">
+          We typically reply within a few business days.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="/assets/js/contact.js"></script>

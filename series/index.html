@@ -1,0 +1,79 @@
+---
+layout: default
+title: Series | Glass Spine Press
+---
+
+<section id="banner">
+  <div class="content">
+
+    <section class="gsp-home-intro">
+      <div class="gsp-logo-header">
+        <img src="/images/logo/black_logo_whitebg_text_header.svg" alt="Glass Spine Press" />
+      </div>
+    </section>
+
+    <header class="major">
+      <h2>Series</h2>
+    </header>
+
+    <p>
+      Explore interconnected worlds and long-form narratives from Glass Spine Press.
+      Each series examines how systems of belief, care, and control evolve—and fracture.
+    </p>
+
+    {% assign series_list = site.series | sort: "series.order" %}
+
+    {% if series_list and series_list.size > 0 %}
+      <section class="gsp-series-grid">
+
+        {% for s in series_list %}
+          <article class="gsp-series-card">
+
+            {% if s.series.collage_image %}
+              <div class="gsp-series-image">
+                <img
+                  src="{{ s.series.collage_image }}"
+                  alt="{{ s.series.collage_alt | default: s.series.name }}"
+                />
+              </div>
+            {% endif %}
+
+            <div class="gsp-series-content">
+              <h2 class="gsp-series-title">{{ s.series.name }}</h2>
+
+              {% if s.series.tagline %}
+                <p class="gsp-series-tagline">{{ s.series.tagline }}</p>
+              {% endif %}
+
+              {% if s.series.facts %}
+                <ul class="alt gsp-series-facts">
+                  {% if s.series.facts.status %}
+                    <li><strong>Status:</strong> {{ s.series.facts.status }}</li>
+                  {% endif %}
+                  {% if s.series.facts.genre %}
+                    <li><strong>Genre:</strong> {{ s.series.facts.genre }}</li>
+                  {% endif %}
+                  {% if s.series.facts.themes %}
+                    <li><strong>Themes:</strong> {{ s.series.facts.themes }}</li>
+                  {% endif %}
+                </ul>
+              {% endif %}
+
+              <div class="gsp-series-actions">
+                <a href="{{ s.url | relative_url }}" class="button">View series</a>
+                {% if s.series.store_url %}
+                  <a href="{{ s.series.store_url }}" class="button alt">Store</a>
+                {% endif %}
+              </div>
+            </div>
+
+          </article>
+        {% endfor %}
+
+      </section>
+    {% else %}
+      <p>No series available at this time.</p>
+    {% endif %}
+
+  </div>
+</section>

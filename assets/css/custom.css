@@ -1,0 +1,787 @@
+/* === Glass Spine Press: Home tweaks === */
+
+body {
+  background: #fafafa;
+}
+
+/* Brand/logo in sidebar */
+.gsp-brand {
+  margin-bottom: 2rem;
+}
+
+.gsp-brand img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Accent colour (single series thread) */
+:root {
+  --series-accent: #3A7F73;
+  --series-accent-rgb: 58, 127, 115;
+  --series-accent-soft: rgba(var(--series-accent-rgb), 0.12);
+}
+
+/* Use accent sparingly */
+.gsp-rule {
+  border: 0;
+  border-top: 3px solid var(--series-accent);
+  width: 84px;
+  margin: 1.25rem 0 0 0;
+  opacity: 0.9;
+}
+
+a {
+  color: var(--series-accent);
+}
+
+a:hover {
+  text-decoration-color: var(--series-accent);
+}
+
+/* Hero spacing */
+.gsp-hero .gsp-thesis {
+  font-size: 1.1rem;
+  max-width: 52rem;
+}
+
+/* Cover strip */
+.gsp-covers {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 1rem 0 0.25rem 0;
+}
+
+.gsp-covers img {
+  height: 220px;
+  width: auto;
+  border-radius: 0.6rem;
+  display: block;
+}
+
+/* Link row under covers */
+.gsp-link-row {
+  margin-top: 0.5rem;
+}
+
+/* Override Editorial orange header rules */
+header.major> :first-child:after {
+  border-bottom-color: var(--series-accent);
+}
+
+/* Override Editorial's default header underline colour */
+header.major> :last-child {
+  border-bottom-color: var(--series-accent) !important;
+}
+
+a {
+  color: var(--series-accent);
+}
+
+a:hover {
+  color: var(--series-accent);
+  text-decoration-color: var(--series-accent);
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,
+.button {
+  border: none !important;
+  box-shadow: inset 0 0 0 2px var(--series-accent);
+  color: var(--series-accent) !important;
+  background-color: transparent;
+}
+
+/* Hover / focus */
+.button:hover,
+.button:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="reset"]:hover,
+input[type="reset"]:focus,
+input[type="button"]:hover,
+input[type="button"]:focus,
+button:hover,
+button:focus {
+  background-color: var(--series-accent);
+  color: #fff !important;
+  box-shadow: inset 0 0 0 2px var(--series-accent);
+}
+
+/* Alt buttons can stay lighter */
+.button.alt {
+  box-shadow: inset 0 0 0 1px rgba(var(--series-accent-rgb), 0.6);
+  color: var(--series-accent) !important;
+}
+
+.button.alt:hover,
+.button.alt:hover {
+  box-shadow: inset 0 0 0 1px rgba(var(--series-accent-rgb), 0.6);
+  color: #fff !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--series-accent) !important;
+  box-shadow: 0 0 0 1px var(--series-accent) !important;
+}
+
+input[type="checkbox"]:checked+label:before,
+input[type="radio"]:checked+label:before {
+  background-color: var(--series-accent) !important;
+  border-color: var(--series-accent) !important;
+}
+
+#sidebar nav a:hover,
+#sidebar nav li.active>a,
+#sidebar nav li>a.active {
+  color: var(--series-accent) !important;
+}
+
+ul.alt li {
+  border-top-color: var(--series-accent-soft);
+}
+
+/* Dropdown (Series) opener hover/active colour */
+#sidebar nav .opener:hover,
+#sidebar nav .opener.active,
+#sidebar nav li.active>.opener {
+  color: var(--series-accent) !important;
+}
+
+/* The little chevron/caret is usually a pseudo-element */
+#sidebar nav .opener:hover:before,
+#sidebar nav .opener.active:before,
+#sidebar nav li.active>.opener:before,
+#sidebar nav .opener:hover:after,
+#sidebar nav .opener.active:after,
+#sidebar nav li.active>.opener:after {
+  color: var(--series-accent) !important;
+}
+
+/* Contact icons (Font Awesome) */
+ul.contact li:before {
+  color: var(--series-accent) !important;
+}
+
+/* === Home: series grid === */
+
+.gsp-home-intro {
+  margin-bottom: 3rem;
+}
+
+/* Grid: book-forward proportions */
+.gsp-series-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+/* Card */
+/* Series card: two-column layout */
+.gsp-series-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0.9rem;
+  padding: 1.6rem;
+
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  /* image | content */
+  gap: 1.75rem;
+  align-items: start;
+}
+
+/* Portrait image window (bookish) */
+.gsp-series-image {
+  aspect-ratio: 2 / 3;
+  max-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0.65rem;
+  background: #f3f3f3;
+  /* subtle neutral backdrop */
+}
+
+.gsp-series-image img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Titles/desc spacing */
+.gsp-series-title {
+  margin: 0 0 0.5rem 0;
+}
+
+.gsp-series-desc {
+  margin: 0 0 1.25rem 0;
+  flex: 1;
+  /* pushes buttons to bottom */
+}
+
+.gsp-series-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.gsp-series-actions {
+  display: grid;
+  margin-top: auto;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.gsp-series-actions .button {
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 736px) {
+  .gsp-series-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .gsp-series-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Standalone section spacing */
+.gsp-standalone-block {
+  margin-top: 3.5rem;
+}
+
+/* Standalone grid: smaller tiles than series cards */
+.gsp-standalone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Book card */
+.gsp-book-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0.9rem;
+  padding: 1.25rem;
+
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  /* cover | content */
+  gap: 1rem;
+  align-items: start;
+}
+
+/* Cover thumbnail */
+.gsp-book-cover {
+  aspect-ratio: 2 / 3;
+  border-radius: 0.55rem;
+  overflow: hidden;
+  background: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* If your cover images are high-res, this is ideal */
+.gsp-book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* If you only have small covers, switch to contain:
+.gsp-book-cover img{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+*/
+
+.gsp-book-title {
+  margin: 0 0 0.35rem 0;
+}
+
+.gsp-book-desc {
+  margin: 0 0 0.9rem 0;
+}
+
+/* Keep actions compact */
+.gsp-book-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 980px) {
+  .gsp-standalone-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 736px) {
+  .gsp-standalone-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Glass Spine Press logo (sidebar) === */
+
+.gsp-logo {
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.gsp-logo-link {
+  display: inline-block;
+}
+
+.gsp-logo img {
+  max-width: 180px;
+  /* key constraint */
+  width: 50%;
+  height: auto;
+  display: block;
+}
+
+/* === Glass Spine Press logo (header) === */
+
+.gsp-logo-header {
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.gsp-logo-header-link {
+  display: inline-block;
+}
+
+.gsp-logo-header img {
+  width: 100%;
+  height: 200px;
+  display: block;
+}
+
+/* === Sidebar menu brand (logo + name) === */
+
+.gsp-menu-header {
+  margin-bottom: 1.75rem;
+  /* space before menu items */
+}
+
+/* Brand row */
+.gsp-menu-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* Spine mark */
+.gsp-menu-brand img {
+  width: 40px;
+  /* sweet spot for sidebar */
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Wordmark text */
+.gsp-menu-brand span {
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #3d4449;
+  /* matches Editorial heading tone */
+  line-height: 1.1;
+}
+
+.gsp-menu-brand {
+  text-decoration: none;
+  border-bottom: none !important;
+}
+
+.gsp-menu-brand:hover span {
+  color: var(--series-accent);
+}
+
+/* Remove excess space between brand header and menu */
+#sidebar #menu {
+  padding-top: 0 !important;
+}
+
+/* Collapse the brand block so it doesn't create a tall empty area */
+#sidebar .gsp-menu-brand {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.85rem;
+
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* Make sure the header itself isn't adding height */
+#sidebar .gsp-menu-header {
+  padding: 0 !important;
+  margin: 0 0 0.75rem 0 !important;
+}
+
+/* === Series template === */
+.gsp-series-hero {
+  margin-bottom: 2.5rem;
+}
+
+.gsp-series-tagline {
+  margin-top: 0.25rem;
+  opacity: 0.85;
+  font-size: 1.05rem;
+}
+
+.gsp-series-premise {
+  max-width: 56rem;
+}
+
+.gsp-series-hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Collage + facts */
+.gsp-series-media {
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+.gsp-series-collage {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0.9rem;
+  padding: 1rem;
+}
+
+.gsp-series-collage img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.6rem;
+}
+
+.gsp-series-facts ul {
+  margin-bottom: 0;
+}
+
+/* Reading order list */
+.gsp-reading-list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.gsp-reading-item {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0.9rem;
+  padding: 1.25rem;
+
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.gsp-reading-cover {
+  aspect-ratio: 2 / 3;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+.gsp-reading-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gsp-reading-meta h3 {
+  margin: 0 0 0.35rem 0;
+}
+
+.gsp-reading-meta p {
+  margin: 0 0 0.85rem 0;
+}
+
+.gsp-reading-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* Expectation cards */
+.gsp-expect-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.gsp-expect-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0.9rem;
+  padding: 1.25rem;
+}
+
+.gsp-expect-card h3 {
+  margin-top: 0;
+}
+
+/* CTA */
+.gsp-series-cta-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .gsp-series-media {
+    grid-template-columns: 1fr;
+  }
+
+  .gsp-expect-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+iframe[src*="jotform"] {
+  border-radius: 0.5rem;
+}
+
+.gsp-required::after {
+  content: " *";
+  color: #e26d5c;
+  /* muted, not screaming red */
+}
+
+.gsp-required-note {
+  font-size: 0.9em;
+  opacity: 0.75;
+  margin-bottom: 1rem;
+}
+
+/* About Author layout */
+.gsp-about-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.gsp-about-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 736px) {
+  .gsp-about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .gsp-about-image {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+/* Tighten vertical spacing on series pages */
+.gsp-series-page #main>.inner>section {
+  padding: 2rem 0 !important;
+  /* Editorial defaults are much larger */
+  margin: 0 !important;
+}
+
+/* First section should not have extra top padding */
+.gsp-series-page #main>.inner>section:first-of-type {
+  padding-top: 3.5rem !important;
+}
+
+.gsp-series-page hr {
+  margin: 1.25rem 0 !important;
+}
+
+/* Hide truly empty paragraphs (prevents accidental spacing) */
+.gsp-series-page p:empty {
+  display: none;
+}
+
+#footer .copyright a {
+  text-decoration: none;
+  border-bottom: none;
+}
+
+#footer .copyright a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Book pages (GSP)
+   ========================= */
+
+.gsp-book-page .gsp-book-hero {
+  padding: 2rem 0 !important;
+  /* Editorial defaults are much larger */
+  margin: 0 !important;
+}
+
+/* First section should not have extra top padding */
+.gsp-book-page #main>.inner>section:first-of-type {
+  padding-top: 3.5rem !important;
+}
+
+/* Tighten vertical spacing on series pages */
+.gsp-book-page #main>.inner>section {
+  padding: 2rem 0 !important;
+  /* Editorial defaults are much larger */
+  margin: 0 !important;
+}
+
+.gsp-book-tagline {
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
+
+/* Two-column book layout (cover + meta) */
+.gsp-book-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+/* Cover column */
+.gsp-book-cover img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* Meta column */
+.gsp-book-meta {
+  flex: 1;
+  min-width: 240px;
+}
+
+.gsp-book-actions {
+  margin-top: 1rem;
+}
+
+.gsp-book-actions .button {
+  margin-right: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Responsive: stack on small screens */
+@media screen and (max-width: 980px) {
+  .gsp-book-layout {
+    flex-direction: column;
+  }
+
+  .gsp-book-cover img {
+    max-width: 100%;
+  }
+}
+/* =========================
+   Contact page
+   ========================= */
+
+.gsp-form-status {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: none;
+}
+
+.gsp-form-status.is-success {
+  display: block;
+}
+
+.gsp-form-status.is-error {
+  display: block;
+}
+:root {
+  --h1-size: 2.1rem;
+  --h2-size: 1.5rem;
+  --h3-size: 1.25rem;
+}
+
+h1 { font-size: var(--h1-size); }
+h2 { font-size: var(--h2-size); }
+h3 { font-size: var(--h3-size); }
+
+#main .inner p {
+  margin: 0 0 1rem 0;
+}
+
+#main .inner h1,
+#main .inner h2,
+#main .inner h3 {
+  margin-top: 2rem;
+}
+
+#main .inner ul,
+#main .inner ol {
+  margin: 0 0 1.25rem 0;
+}
+
+#main .inner li {
+  margin: 0.35rem 0;
+}
+
+.gsp-home-welcome {
+  margin-top: 1.5rem;
+  max-width: 60rem;
+}
+
+.gsp-home-title {
+  margin: 0.5rem 0 0.75rem;
+}
+
+.gsp-home-subtitle {
+  margin: 0 0 1.25rem;
+}
+
+.gsp-home-actions .button {
+  margin-right: 0.75rem;
+  margin-bottom: 0.75rem;
+}

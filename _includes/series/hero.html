@@ -1,0 +1,42 @@
+<section class="gsp-series-hero">
+  <header class="main">
+    <h1>{{ include.series.name }}</h1>
+  </header>
+
+  {% if include.series.tagline %}
+  <div class="gsp-series-tagline">
+    <p>{{ include.series.tagline }}</p>
+  </div>
+  {% endif %}
+</section>
+
+<section class="gsp-series-media">
+  <div class="gsp-series-collage">
+    <img src="{{ include.series.collage_image }}"
+      alt="{{ include.series.collage_alt | default: include.series.name }}" />
+  </div>
+
+  <div class="gsp-series-facts">
+    <ul class="alt">
+      {% if include.series.facts.status %}<li><strong>Status:</strong> {{ include.series.facts.status }}</li>{% endif %}
+      {% if include.series.facts.genre %}<li><strong>Genre:</strong> {{ include.series.facts.genre }}</li>{% endif %}
+      {% if include.series.facts.themes %}<li><strong>Core themes:</strong> {{ include.series.facts.themes }}</li>{%
+      endif %}
+    </ul>
+
+    {% if include.series.premise_paragraphs %}
+    {% for p in include.series.premise_paragraphs %}
+    <p class="{% if forloop.first %}gsp-series-premise{% endif %}">{{ p }}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% assign resolved_series_buy_url = include.series.store_url | default: site.store_url %}
+
+    {% if resolved_series_buy_url %}
+    <div class="gsp-series-hero-actions">
+      <a href="{{ resolved_series_buy_url }}" class="button small">Buy the series</a>
+    </div>
+    {% endif %}
+
+  </div>
+</section>

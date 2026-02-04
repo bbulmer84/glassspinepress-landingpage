@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<!--
+  Editorial by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>
+        {% if page.title %}
+        {{ page.title }}
+        {% else %}
+        {{ site.title }}
+        {% endif %}
+    </title>
+
+    {% if page.description %}
+    <meta name="description"
+        content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    {% endif %}
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    <link rel="stylesheet" href="/assets/css/main.css?v=1" />
+    <link rel="stylesheet" href="/assets/css/custom.css?v=2" />
+
+    {% if page.head_extra %}
+    {{ page.head_extra }}
+    {% endif %}
+</head>
+
+<body class="is-preload gsp-series-page">
+
+    <div id="wrapper">
+
+        <div id="main">
+            <div class="inner">
+                {{ content }}
+            </div>
+        </div>
+
+        {% include sidebar.html %}
+
+    </div>
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+    {% if page.body_extra %}
+    {{ page.body_extra }}
+    {% endif %}
+</body>
+
+</html>

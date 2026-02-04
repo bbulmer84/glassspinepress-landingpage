@@ -1,0 +1,92 @@
+<section id="banner">
+  <div class="content">
+
+    <!-- Welcoming hero -->
+    <section class="gsp-home-intro">
+      <div class="gsp-logo-header">
+        <img src="/images/logo/black_logo_whitebg_text_header.svg" alt="Glass Spine Press" />
+      </div>
+
+      <div class="gsp-home-welcome">
+        <h1 class="gsp-home-title">Welcome to Glass Spine Press</h1>
+        <p class="gsp-home-subtitle">
+          Speculative fiction where protection becomes policy—and policy becomes power.
+          Start with a series world, or drop into a standalone.
+        </p>
+      </div>
+    </section>
+
+    <!-- SERIES -->
+    {% if site.series %}
+    {% assign series_list = site.series | sort: "series.order" %}
+    {% else %}
+    {% assign series_list = "" | split: "" %}
+    {% endif %}
+
+    {% if series_list.size > 0 %}
+    <header class="major">
+      <h2>Series</h2>
+    </header>
+
+    <section class="gsp-series-grid">
+      {% for s in series_list %}
+      <article class="gsp-series-card">
+        {% if s.series.collage_image %}
+        <div class="gsp-series-image">
+          <img src="{{ s.series.collage_image }}" alt="{{ s.series.collage_alt | default: s.series.name }}" />
+        </div>
+        {% endif %}
+
+        <div class="gsp-series-content">
+          <h2 class="gsp-series-title">{{ s.series.name }}</h2>
+
+          {% if s.series.tagline %}
+          <p class="gsp-series-tagline">{{ s.series.tagline }}</p>
+          {% endif %}
+
+          <div class="gsp-series-actions">
+            <a href="{{ s.url | relative_url }}" class="button alt">Learn more</a>
+            {% if s.series.store_url %}
+            <a href="{{ s.series.store_url }}" class="button">Buy the Series</a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- STANDALONE BOOKS (no where_exp; filter inside loop) -->
+    {% if site.books %}
+    {% assign all_books = site.books | sort: "book.order" %}
+    {% else %}
+    {% assign all_books = "" | split: "" %}
+    {% endif %}
+
+    {% assign has_standalones = false %}
+    {% for b in all_books %}
+    {% if b.book.series == nil or b.book.series == '' %}
+    {% assign has_standalones = true %}
+    {% endif %}
+    {% endfor %}
+
+    {% if has_standalones %}
+    <section class="gsp-standalone-block">
+      <header class="major">
+        <h2>Standalone Books</h2>
+      </header>
+
+      <div class="gsp-standalone-grid">
+        {% for b in all_books %}
+        {% if b.book.series == nil or b.book.series == '' %}
+        {% assign book_desc = b.book.tagline | default: b.book.desc | default: "" %}
+        {% include book-card.html cover=b.book.cover title=b.book.title status=b.book.status release=b.book.release
+        desc=book_desc details_url=b.url coming_soon=b.book.coming_soon %}
+        {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+  </div>
+</section>

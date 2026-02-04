@@ -1,0 +1,34 @@
+<article class="gsp-book-card">
+  <div class="gsp-book-cover">
+    <img src="{{ include.cover }}" alt="{{ include.title }} cover" />
+  </div>
+
+  <div class="gsp-book-meta">
+    <h3 class="gsp-book-title">{{ include.title }}</h3>
+
+    {% if include.status or include.release %}
+      <p class="gsp-book-submeta">
+        {% if include.status %}<span><strong>Status:</strong> {{ include.status }}</span>{% endif %}
+        {% if include.status and include.release %} &nbsp;•&nbsp; {% endif %}
+        {% if include.release %}<span><strong>Release:</strong> {{ include.release }}</span>{% endif %}
+      </p>
+    {% endif %}
+
+    {% if include.desc %}
+      <p class="gsp-book-desc">{{ include.desc }}</p>
+    {% endif %}
+
+    <div class="gsp-book-actions">
+      {% if page.book.coming_soon != true %}
+      {% assign resolved_buy_url = page.book.buy_url | default: site.store_url %}
+      {% if resolved_buy_url %}
+      <a href="{{ resolved_buy_url }}" class="button small">Buy</a>
+      {% endif %}
+      {% endif %}
+
+      {% if include.details_url %}
+        <a href="{{ include.details_url | relative_url }}" class="button small alt">Details</a>
+      {% endif %}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,14 @@
+<section>
+  <header class="major">
+    <h2>{{ include.title | default: "What to Expect" }}</h2>
+  </header>
+
+  <div class="gsp-expect-grid">
+    {% for item in include.items %}
+      <div class="gsp-expect-card">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>

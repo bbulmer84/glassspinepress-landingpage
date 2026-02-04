@@ -1,0 +1,14 @@
+url: https://glassspinepress.com
+store_url: https://store.glassspinepress.com.au
+title: Glass Spine Press
+description: >
+  Glass Spine Press publishes speculative and dystopian fiction exploring
+  how systems built to protect humanity evolve into mechanisms of control,
+  belief, and moral fracture.
+collections:
+  series:
+    output: true
+    permalink: /series/:path/
+  books:
+    output: true
+    permalink: /books/:path/
