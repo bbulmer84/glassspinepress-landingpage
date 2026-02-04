@@ -19,15 +19,19 @@
     {% endif %}
 
     <div class="gsp-book-actions">
-      {% assign cs = include.coming_soon | default: false %}
       {% assign status = include.status | downcase %}
+      {% assign cs_raw = include.coming_soon %}
+
+      {%- if cs_raw == nil -%}
+      {%- assign cs = status != 'completed' -%}
+      {%- else -%}
+      {%- assign cs = cs_raw -%}
+      {%- endif -%}
 
       {% if cs == true or cs == 'true' %}
       <span class="button small disabled">Coming soon</span>
-      {% elsif cs == false or cs == 'false' %}
-      {% if status == 'completed' %}
+      {% elsif (cs == false or cs == 'false') and status == 'completed' %}
       <a href="{{ site.store_url }}" class="button small">Buy</a>
-      {% endif %}
       {% endif %}
 
       {% if include.details_url %}
