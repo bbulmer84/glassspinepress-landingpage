@@ -785,3 +785,25 @@ h3 { font-size: var(--h3-size); }
   margin-right: 0.75rem;
   margin-bottom: 0.75rem;
 }
+/* Tighten form field sizing to match button scale */
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+}
+
+/* Reduce textarea vertical bulk slightly */
+form textarea {
+  min-height: 8rem;
+}
+
+/* Reduce label spacing */
+form label {
+  margin-bottom: 0.25rem;
+}
+
+/* Tighten vertical rhythm inside forms */
+form .row.gtr-uniform > * {
+  padding-top: 0.75rem;
+}
