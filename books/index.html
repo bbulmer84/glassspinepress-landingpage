@@ -5,13 +5,6 @@ title: Books | Glass Spine Press
 
 <section id="banner">
   <div class="content">
-
-    <section class="gsp-home-intro">
-      <div class="gsp-logo-header">
-        <img src="/images/logo/black_logo_whitebg_text_header.svg" alt="Glass Spine Press" />
-      </div>
-    </section>
-
     <header class="major">
       <h2>Books</h2>
     </header>
@@ -22,17 +15,18 @@ title: Books | Glass Spine Press
 
     <div class="gsp-standalone-grid">
       {% if site.books %}
-        {% assign all_books = site.books | sort: "book.order" %}
+      {% assign all_books = site.books | sort: "book.order" %}
       {% else %}
-        {% assign all_books = "" | split: "" %}
+      {% assign all_books = "" | split: "" %}
       {% endif %}
 
       {% for b in all_books %}
-        {% assign book_desc = b.book.tagline | default: b.book.desc | default: "" %}
-        {% assign book_buy = b.book.buy_url | default: "" %}
-        {% assign is_coming = b.book.coming_soon | default: false %}
+      {% assign book_desc = b.book.tagline | default: b.book.desc | default: "" %}
+      {% assign book_buy = b.book.buy_url | default: "" %}
+      {% assign is_coming = b.book.coming_soon | default: false %}
 
-        {% include book-card.html cover=b.book.cover title=b.book.title status=b.book.status release=b.book.release desc=book_desc details_url=b.url buy_url=book_buy coming_soon=is_coming %}
+      {% include book-card.html cover=b.book.cover title=b.book.title status=b.book.status release=b.book.release
+      desc=book_desc details_url=b.url buy_url=book_buy coming_soon=is_coming %}
       {% endfor %}
     </div>
 
