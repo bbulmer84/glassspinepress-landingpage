@@ -770,11 +770,12 @@ h3 { font-size: var(--h3-size); }
 
 .gsp-home-welcome {
   margin-top: 1.5rem;
-  max-width: 60rem;
+  max-width: 100%;
 }
 
 .gsp-home-title {
   margin: 0.5rem 0 0.75rem;
+  text-align: center;
 }
 
 .gsp-home-subtitle {
