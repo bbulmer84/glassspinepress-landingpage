@@ -74,23 +74,6 @@
 </section>
 {% endif %}
 
-{% if page.book.details %}
-<section>
-  <header class="major">
-    <h2>Details</h2>
-  </header>
-  <ul>
-    {% for item in page.book.details %}
-    {% if item.label %}
-    <li><strong>{{ item.label }}:</strong> {{ item.value }}</li>
-    {% else %}
-    <li>{{ item }}</li>
-    {% endif %}
-    {% endfor %}
-  </ul>
-</section>
-{% endif %}
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
