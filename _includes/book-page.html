@@ -49,6 +49,17 @@
       <a href="{{ site.store_url }}" class="button small">Buy</a>
       {% endif %}
 
+      {% comment %}
+      Sample button (modal overlay). Shown when sample_url is provided.
+      Uses the same data source as the book page front matter (page.book.*).
+      {% endcomment %}
+      {% if page.book.sample_url %}
+      <a href="#" class="button small" data-gsp-sample data-sample-url="{{ page.book.sample_url | relative_url }}"
+        data-book-title="{{ page.book.title }}" {% if page.book.tagline %} data-book-tagline="{{ page.book.tagline }}"
+        {% endif %} data-buy-url="{{ site.store_url }}">
+        View sample
+      </a>
+      {% endif %}
 
       {% if page.book.series and page.book.series_url %}
       <a href="{{ page.book.series_url | relative_url }}" class="button small alt">Back to series</a>
@@ -57,6 +68,7 @@
       {% endif %}
 
     </div>
+
 
   </div>
 </section>

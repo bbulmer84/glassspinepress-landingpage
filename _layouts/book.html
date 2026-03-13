@@ -54,6 +54,9 @@
     <script src="/assets/js/util.js"></script>
     <script src="/assets/js/main.js"></script>
 
+    {% include sample-modal.html %}
+    <script src="{{ '/assets/js/gs-sample-modal.js' | relative_url }}"></script>
+
     {% if page.body_extra %}
     {{ page.body_extra }}
     {% endif %}
