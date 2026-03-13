@@ -920,3 +920,70 @@ body.gsp-modal-open {
 body.gsp-modal-open {
   overflow: hidden;
 }
+
+.sidebar-social {
+  margin: 0.25rem 0 0.5rem 0;
+  padding-top: 0;
+}
+
+.sidebar-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  border: 0;
+  color: inherit;
+  font-size: 0.95rem;
+}
+
+.sidebar-social-link .social-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: #2f7d73;
+}
+
+.sidebar-social-link:hover {
+  opacity: 0.85;
+}
+/* Sidebar spacing cleanup */
+#sidebar .inner > #menu {
+  margin-bottom: 0.2rem;
+}
+
+#sidebar .sidebar-social {
+  margin: 0 0 0.9rem 0;
+  padding: 0;
+}
+
+#sidebar .sidebar-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  line-height: 1;
+  font-size: 0.9rem;
+}
+
+#sidebar .sidebar-social-link .social-icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 1rem;
+}
+
+#sidebar .sidebar-social + section {
+  margin-top: 0.9rem;
+  padding-top: 0;
+}
+
+#sidebar #menu {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#sidebar #menu ul {
+  margin-bottom: 0 !important;
+}
+
+#sidebar .sidebar-social {
+  margin: 0.4rem 0 1.3rem 0 !important;
+  padding: 0 !important;
+}
