@@ -987,3 +987,59 @@ body.gsp-modal-open {
   margin: 0.4rem 0 1.3rem 0 !important;
   padding: 0 !important;
 }
+
+.gsp-faq-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.gsp-faq-item {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0.9rem;
+  overflow: hidden;
+}
+
+.gsp-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.2rem 3.2rem 1.2rem 1.4rem;
+  font-weight: 700;
+  color: #000 !important;
+  position: relative;
+}
+
+.gsp-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.gsp-faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #000;
+  line-height: 1;
+}
+
+.gsp-faq-item[open] summary::after {
+  content: "−";
+}
+
+.gsp-faq-answer {
+  padding: 0 1.4rem 1.3rem 1.4rem;
+}
+
+.gsp-faq-answer p {
+  margin: 0;
+  line-height: 1.75;
+  color: #555;
+}
+
+.gsp-faq-intro {
+  text-transform: none !important;
+}
