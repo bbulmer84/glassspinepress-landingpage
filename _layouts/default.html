@@ -4,36 +4,51 @@
   html5up.net | @ajlkn
   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="en">
 
 <head>
-    <title>
-        {% if page.title %}
-        {{ page.title }}
-        {% else %}
-        {{ site.title }}
-        {% endif %}
-    </title>
+    {% assign meta_title = page.seo_title | default: page.title | default: site.title %}
+    {% assign meta_description = page.description | default: site.description %}
+    {% assign meta_image = page.og_image | default: site.default_og_image %}
+    {% assign canonical_url = page.url | absolute_url %}
 
-    {% if page.description %}
-    <meta name="description"
-        content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-
-    {% endif %}
+    <title>{{ meta_title }}</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+    <meta name="description" content="{{ meta_description | escape }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ meta_title | escape }}">
+    <meta property="og:description" content="{{ meta_description | escape }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:type" content="website">
+    {% if meta_image %}
+    <meta property="og:image" content="{{ meta_image | absolute_url }}">
+    {% endif %}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ meta_title | escape }}">
+    <meta name="twitter:description" content="{{ meta_description | escape }}">
+    {% if meta_image %}
+    <meta name="twitter:image" content="{{ meta_image | absolute_url }}">
+    {% endif %}
 
     <!-- CSS (root-relative so subfolders don't break) -->
     <link rel="stylesheet" href="/assets/css/series-tokens.css?v=1" />
     <link rel="stylesheet" href="/assets/css/main.css?v=1" />
     <link rel="stylesheet" href="/assets/css/custom.css?v=2" />
+
+    <!-- Icons -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Glass Spine Press" />
+
     {% if page.head_extra %}
     {{ page.head_extra }}
     {% endif %}
@@ -61,10 +76,10 @@
     <script src="/assets/js/breakpoints.min.js"></script>
     <script src="/assets/js/util.js"></script>
     <script src="/assets/js/main.js"></script>
-    
+
     {% include sample-modal.html %}
     <script src="{{ '/assets/js/gs-sample-modal.js' | relative_url }}"></script>
-    
+
     {% if page.body_extra %}
     {{ page.body_extra }}
     {% endif %}

@@ -3,11 +3,25 @@ layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   {% for page in site.pages %}
-    {% if page.url contains '.html' %}
+    {% if page.url %}
       <url>
-        <loc>{{ site.url }}{{ page.url }}</loc>
+        <loc>{{ page.url | absolute_url }}</loc>
       </url>
     {% endif %}
   {% endfor %}
+
+  {% for book in site.books %}
+    <url>
+      <loc>{{ book.url | absolute_url }}</loc>
+    </url>
+  {% endfor %}
+
+  {% for series in site.series %}
+    <url>
+      <loc>{{ series.url | absolute_url }}</loc>
+    </url>
+  {% endfor %}
+
 </urlset>
