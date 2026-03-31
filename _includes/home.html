@@ -44,7 +44,7 @@
           {% endif %}
 
           <div class="gsp-series-actions">
-            <a href="{{ s.url | relative_url }}" class="button alt">Learn more</a>
+            <a href="{{ s.url | relative_url }}" class="button alt">Explore {{ s.series.name }}</a>
             {% if s.series.store_url %}
             <a href="{{ s.series.store_url }}" class="button">Buy the Series</a>
             {% endif %}
