@@ -7,6 +7,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPH8J89P8H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-SPH8J89P8H');
+    </script>
     {% assign meta_title = page.seo_title | default: page.title | default: site.title %}
     {% assign meta_description = page.description | default: site.description %}
     {% assign meta_image = page.og_image | default: page.cover_image | default: site.default_og_image %}
