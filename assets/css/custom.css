@@ -1043,3 +1043,45 @@ body.gsp-modal-open {
 .gsp-faq-intro {
   text-transform: none !important;
 }
+
+.gsp-reviews-intro {
+  margin-bottom: 2.5rem;
+}
+
+.gsp-reviews-intro p {
+  margin-bottom: 0;
+}
+
+.gsp-review-book {
+  margin-top: 0;
+  margin-bottom: 3rem;
+}
+
+.gsp-review-book-header {
+  margin-bottom: 1.25rem;
+}
+
+.gsp-review-book-header h2 {
+  margin-bottom: 0;
+}
+
+.gsp-review-quote {
+  margin: 0;
+  padding: 2rem;
+  background: #ffffff;
+  border-left: 4px solid #000000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.gsp-review-quote p {
+  margin: 0 0 1rem 0;
+}
+
+.gsp-review-quote p:last-of-type {
+  margin-bottom: 1.25rem;
+}
+
+.gsp-review-quote footer {
+  font-weight: 600;
+  color: #000000;
+}
