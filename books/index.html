@@ -24,9 +24,21 @@ title: Books | Glass Spine Press
       {% assign book_desc = b.book.tagline | default: b.book.desc | default: "" %}
       {% assign book_buy = b.book.buy_url | default: "" %}
       {% assign is_coming = b.book.coming_soon | default: false %}
+      {% assign book_ebook = b.book.ebook_url | default: "" %}
+      {% assign book_paperback = b.book.paperback_url | default: "" %}
 
-      {% include book-card.html cover=b.book.cover title=b.book.title status=b.book.status release=b.book.release
-      desc=book_desc details_url=b.url buy_url=book_buy coming_soon=is_coming %}
+      {% include book-card.html
+      cover=b.book.cover
+      title=b.book.title
+      status=b.book.status
+      release=b.book.release
+      desc=book_desc
+      details_url=b.url
+      buy_url=book_buy
+      ebook_url=book_ebook
+      paperback_url=book_paperback
+      coming_soon=is_coming
+      %}
       {% endfor %}
     </div>
 

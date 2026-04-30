@@ -42,6 +42,8 @@ Fallback mode:
     {% assign details_url = item.url %}
     {% assign buy_url = item.book.buy_url %}
     {% assign coming_soon = item.book.coming_soon %}
+    {% assign ebook_url = item.book.ebook_url | default: "" %}
+    {% assign paperback_url = item.book.paperback_url | default: "" %}
     {% else %}
     {% assign cover = item.cover %}
     {% assign btitle = item.title %}
@@ -51,6 +53,8 @@ Fallback mode:
     {% assign details_url = item.details_url %}
     {% assign buy_url = item.buy_url %}
     {% assign coming_soon = item.coming_soon %}
+    {% assign ebook_url = item.ebook_url | default: "" %}
+    {% assign paperback_url = item.paperback_url | default: "" %}
     {% endif %}
 
     <article class="gsp-book-card">
@@ -75,18 +79,21 @@ Fallback mode:
 
         <div class="gsp-book-actions">
           {% assign status_lc = status | downcase %}
-          {% assign cs_raw = coming_soon %}
-
-          {% if cs_raw == nil %}
-          {% assign cs = status_lc != 'completed' %}
-          {% else %}
-          {% assign cs = cs_raw %}
-          {% endif %}
+          {% assign cs = coming_soon | default: false %}
 
           {% if cs == true or cs == 'true' %}
           <span class="button small disabled">Coming soon</span>
-          {% elsif (cs == false or cs == 'false') and status_lc == 'completed' %}
-          <a href="{{ site.store_url }}" class="button small">Buy now</a>
+
+          {% elsif status_lc == 'available' %}
+
+          {% if ebook_url %}
+          <a href="{{ ebook_url }}" class="button small primary">Buy eBook</a>
+          {% endif %}
+
+          {% if paperback_url %}
+          <a href="{{ paperback_url }}" class="button small">Buy Paperback</a>
+          {% endif %}
+
           {% endif %}
 
           {% if details_url %}

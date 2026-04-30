@@ -32,6 +32,10 @@
       <li><strong>Release:</strong> {{ page.book.release }}</li>
       {% endif %}
 
+      {% if page.book.pricing %}
+      <li><strong>Pricing:</strong> {{ page.book.pricing }}</li>
+      {% endif %}
+
       {% if page.book.isbn %}
       <li><strong>ISBN:</strong> {{ page.book.isbn }}</li>
       {% endif %}
@@ -40,35 +44,51 @@
 
     <div class="gsp-book-actions">
 
-      {% assign cs = page.book.coming_soon | default: false %}
-      {% assign status = page.book.status | downcase %}
+      <div class="gsp-buy-buttons">
+        {% if page.book.ebook_url %}
+        <a href="{{ page.book.ebook_url }}" class="button small primary">Buy eBook</a>
+        {% endif %}
 
-      {% if cs == true or cs == 'true' %}
-      <span class="button small disabled">Coming soon</span>
-      {% elsif (cs == false or cs == 'false') and status == 'completed' %}
-      <a href="{{ site.store_url }}" class="button small">Buy now</a>
+        {% if page.book.paperback_url %}
+        <a href="{{ page.book.paperback_url }}" class="button small alt">Buy paperback</a>
+        {% endif %}
+      </div>
+
+      <div class="gsp-secondary-actions">
+        {% if page.book.sample_url %}
+        <a href="#" class="button small alt" data-gsp-sample data-sample-url="{{ page.book.sample_url | relative_url }}"
+          data-book-title="{{ page.book.title }}" {% if page.book.tagline %} data-book-tagline="{{ page.book.tagline }}"
+          {% endif %} data-buy-url="{{ site.store_url }}">
+          View sample
+        </a>
+        {% endif %}
+
+        {% if page.book.review_anchor %}
+        <a href="/reviews/#{{ page.book.review_anchor }}" class="button small alt">Read reviews</a>
+        {% endif %}
+
+        {% if page.book.series and page.book.series_url %}
+        <a href="{{ page.book.series_url | relative_url }}" class="button small alt">Back to series</a>
+        {% elsif page.book.books_index_url %}
+        <a href="{{ page.book.books_index_url | relative_url }}" class="button small alt">Back to books</a>
+        {% endif %}
+      </div>
+      
+      {% if page.book.pricing %}
+      <p class="gsp-purchase-trust">
+        Secure checkout • Instant eBook delivery • Print ships from Australia
+      </p>
       {% endif %}
 
-      {% comment %}
-      Sample button (modal overlay). Shown when sample_url is provided.
-      Uses the same data source as the book page front matter (page.book.*).
-      {% endcomment %}
-      {% if page.book.sample_url %}
-      <a href="#" class="button small alt" data-gsp-sample data-sample-url="{{ page.book.sample_url | relative_url }}"
-        data-book-title="{{ page.book.title }}" {% if page.book.tagline %} data-book-tagline="{{ page.book.tagline }}"
-        {% endif %} data-buy-url="{{ site.store_url }}">
-        View sample
-      </a>
-      {% endif %}
-
-      {% if page.book.review_anchor %}
-      <a href="/reviews/#{{ page.book.review_anchor }}" class="button small alt">Read reviews</a>
-      {% endif %}
-
-      {% if page.book.series and page.book.series_url %}
-      <a href="{{ page.book.series_url | relative_url }}" class="button small alt">Back to series</a>
-      {% elsif page.book.books_index_url %}
-      <a href="{{ page.book.books_index_url | relative_url }}" class="button small alt">Back to books</a>
+      {% if page.book.fiction_for %}
+      <div class="gsp-fiction-for-inline">
+        <p class="gsp-fiction-for-title">Fiction for:</p>
+        <ul>
+          {% for item in page.book.fiction_for %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
       {% endif %}
 
     </div>

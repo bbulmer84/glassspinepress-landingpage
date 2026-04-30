@@ -719,6 +719,7 @@ iframe[src*="jotform"] {
     max-width: 100%;
   }
 }
+
 /* =========================
    Contact page
    ========================= */
@@ -739,15 +740,24 @@ iframe[src*="jotform"] {
 .gsp-form-status.is-error {
   display: block;
 }
+
 :root {
   --h1-size: 2.1rem;
   --h2-size: 1.5rem;
   --h3-size: 1.25rem;
 }
 
-h1 { font-size: var(--h1-size); }
-h2 { font-size: var(--h2-size); }
-h3 { font-size: var(--h3-size); }
+h1 {
+  font-size: var(--h1-size);
+}
+
+h2 {
+  font-size: var(--h2-size);
+}
+
+h3 {
+  font-size: var(--h3-size);
+}
 
 #main .inner p {
   margin: 0 0 1rem 0;
@@ -786,6 +796,7 @@ h3 { font-size: var(--h3-size); }
   margin-right: 0.75rem;
   margin-bottom: 0.75rem;
 }
+
 /* Tighten form field sizing to match button scale */
 form input[type="text"],
 form input[type="email"],
@@ -805,7 +816,7 @@ form label {
 }
 
 /* Tighten vertical rhythm inside forms */
-form .row.gtr-uniform > * {
+form .row.gtr-uniform>* {
   padding-top: 0.75rem;
 }
 
@@ -826,7 +837,7 @@ form .row.gtr-uniform > * {
 .gsp-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .gsp-modal-dialog {
@@ -945,8 +956,9 @@ body.gsp-modal-open {
 .sidebar-social-link:hover {
   opacity: 0.85;
 }
+
 /* Sidebar spacing cleanup */
-#sidebar .inner > #menu {
+#sidebar .inner>#menu {
   margin-bottom: 0.2rem;
 }
 
@@ -969,7 +981,7 @@ body.gsp-modal-open {
   flex: 0 0 1rem;
 }
 
-#sidebar .sidebar-social + section {
+#sidebar .sidebar-social+section {
   margin-top: 0.9rem;
   padding-top: 0;
 }
@@ -1084,4 +1096,63 @@ body.gsp-modal-open {
 .gsp-review-quote footer {
   font-weight: 600;
   color: #000000;
+}
+
+.gsp-book-actions {
+  margin-top: 1.5rem;
+  display: block !important;
+}
+
+.gsp-buy-buttons,
+.gsp-secondary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* was ~0.75 */
+  width: 100%;
+  padding-left: 0;
+}
+
+.button.primary {
+  background-color: #2f6f6b;
+  color: #ffffff;
+  border: 1px solid #2f6f6b;
+}
+
+.button.primary:hover {
+  background-color: #255a56;
+  border-color: #255a56;
+}
+
+.gsp-buy-buttons .button.primary:first-child {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.gsp-secondary-actions {
+  margin-top: 0.85rem;
+}
+
+.gsp-purchase-trust {
+  display: block;
+  width: 100%;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  opacity: 0.65;
+  color: #8a97a3;
+}
+
+.gsp-fiction-for-inline {
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  margin-top: 1.2rem;
+  padding-top: 0.9rem;
+}
+
+.gsp-book-meta {
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  max-width: 520px;
 }
