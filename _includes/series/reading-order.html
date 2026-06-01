@@ -1,7 +1,8 @@
 {% comment %}
 Auto mode:
 - Pull from site.books where b.book.series == include.series.name
-- Sort by b.book.order (recommended)
+- Exclude companion books from main reading order
+- Sort by b.book.order
 Fallback mode:
 - Use include.books (your manual list in the series front matter)
 {% endcomment %}
@@ -10,7 +11,10 @@ Fallback mode:
 
 {% assign auto_books = "" | split: "" %}
 {% if include.series and include.series.name and site.books %}
-{% assign auto_books = site.books | where_exp: "b", "b.book.series == include.series.name" | sort: "book.order" %}
+  {% assign auto_books = site.books
+    | where_exp: "b", "b.book.series == include.series.name"
+    | sort: "book.order"
+  %}
 {% endif %}
 
 {% assign books_to_show = auto_books %}
@@ -27,12 +31,6 @@ Fallback mode:
   <div class="gsp-standalone-grid">
     {% for item in books_to_show %}
 
-    {%- comment -%}
-    If it came from site.books, "item" is the page.
-    If it came from series front matter, "item" is a plain hash.
-    Normalize into variables.
-    {%- endcomment -%}
-
     {% if item.book %}
     {% assign cover = item.book.cover %}
     {% assign btitle = item.book.title %}
@@ -44,6 +42,7 @@ Fallback mode:
     {% assign coming_soon = item.book.coming_soon %}
     {% assign ebook_url = item.book.ebook_url | default: "" %}
     {% assign paperback_url = item.book.paperback_url | default: "" %}
+    {% assign category = item.book.category | default: "series" %}
     {% else %}
     {% assign cover = item.cover %}
     {% assign btitle = item.title %}
@@ -55,6 +54,11 @@ Fallback mode:
     {% assign coming_soon = item.coming_soon %}
     {% assign ebook_url = item.ebook_url | default: "" %}
     {% assign paperback_url = item.paperback_url | default: "" %}
+    {% assign category = item.category | default: "series" %}
+    {% endif %}
+
+    {% if category == "companion" %}
+    {% continue %}
     {% endif %}
 
     <article class="gsp-book-card">
@@ -62,7 +66,7 @@ Fallback mode:
         <img src="{{ cover }}" alt="{{ btitle }} cover" />
       </div>
 
-      <div class="gsp-book-meta">
+      <div class="gsp-bookcard-meta">
         <h3 class="gsp-book-title">{{ btitle }}</h3>
 
         {% if status or release %}

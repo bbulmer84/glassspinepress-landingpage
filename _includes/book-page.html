@@ -36,6 +36,10 @@
       <li><strong>Pricing:</strong> {{ page.book.pricing }}</li>
       {% endif %}
 
+      {% if page.book.lulu_url %}
+      <li><strong>Also Available on:</strong> <a href="{{ page.book.lulu_url }}">Lulu Bookstore</a></li>
+      {% endif %}
+
       {% if page.book.isbn %}
       <li><strong>ISBN:</strong> {{ page.book.isbn }}</li>
       {% endif %}
@@ -50,7 +54,11 @@
         {% endif %}
 
         {% if page.book.paperback_url %}
-        <a href="{{ page.book.paperback_url }}" class="button small alt">Buy paperback</a>
+        <a href="{{ page.book.paperback_url }}" class="button small alt">Buy Paperback</a>
+        {% endif %}
+
+        {% if page.book.lulu_url %}
+        <a href="{{ page.book.lulu_url }}" class="button small alt">Buy Paperback on LuLu</a>
         {% endif %}
       </div>
 
@@ -67,16 +75,20 @@
         <a href="/reviews/#{{ page.book.review_anchor }}" class="button small alt">Read reviews</a>
         {% endif %}
 
-        {% if page.book.series and page.book.series_url %}
+        {% assign book_category = page.book.category | default: "series" %}
+
+        {% if book_category == "companion" and page.book.books_index_url %}
+        <a href="{{ page.book.books_index_url | relative_url }}" class="button small alt">Back to books</a>
+        {% elsif page.book.series and page.book.series_url %}
         <a href="{{ page.book.series_url | relative_url }}" class="button small alt">Back to series</a>
         {% elsif page.book.books_index_url %}
         <a href="{{ page.book.books_index_url | relative_url }}" class="button small alt">Back to books</a>
         {% endif %}
       </div>
-      
+
       {% if page.book.pricing %}
       <p class="gsp-purchase-trust">
-        Secure checkout • Instant eBook delivery • Print ships from Australia
+        Secure checkout • Instant eBook delivery • Paperback also available through Lulu Bookstore
       </p>
       {% endif %}
 

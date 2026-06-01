@@ -10,37 +10,82 @@ title: Books | Glass Spine Press
     </header>
 
     <p>
-      Browse published and upcoming titles from Glass Spine Press.
+      Browse published, upcoming, and companion titles from Glass Spine Press.
     </p>
 
-    <div class="gsp-standalone-grid">
-      {% if site.books %}
+    {% if site.books %}
       {% assign all_books = site.books | sort: "book.order" %}
-      {% else %}
+    {% else %}
       {% assign all_books = "" | split: "" %}
-      {% endif %}
+    {% endif %}
 
+    <header class="major gsp-books-section-header">
+      <h2>The Glass Spine Series</h2>
+    </header>
+
+    <div class="gsp-standalone-grid">
       {% for b in all_books %}
-      {% assign book_desc = b.book.tagline | default: b.book.desc | default: "" %}
-      {% assign book_buy = b.book.buy_url | default: "" %}
-      {% assign is_coming = b.book.coming_soon | default: false %}
-      {% assign book_ebook = b.book.ebook_url | default: "" %}
-      {% assign book_paperback = b.book.paperback_url | default: "" %}
+        {% assign book_category = b.book.category | default: "series" %}
 
-      {% include book-card.html
-      cover=b.book.cover
-      title=b.book.title
-      status=b.book.status
-      release=b.book.release
-      desc=book_desc
-      details_url=b.url
-      buy_url=book_buy
-      ebook_url=book_ebook
-      paperback_url=book_paperback
-      coming_soon=is_coming
-      %}
+        {% unless book_category == "companion" %}
+          {% assign book_desc = b.book.tagline | default: b.book.desc | default: "" %}
+          {% assign book_buy = b.book.buy_url | default: "" %}
+          {% assign is_coming = b.book.coming_soon | default: false %}
+          {% assign book_ebook = b.book.ebook_url | default: "" %}
+          {% assign book_paperback = b.book.paperback_url | default: "" %}
+
+          {% include book-card.html
+            cover=b.book.cover
+            title=b.book.title
+            status=b.book.status
+            release=b.book.release
+            desc=book_desc
+            details_url=b.url
+            buy_url=book_buy
+            ebook_url=book_ebook
+            paperback_url=book_paperback
+            coming_soon=is_coming
+          %}
+        {% endunless %}
       {% endfor %}
     </div>
+
+    <section class="gsp-books-section gsp-companion-books">
+      <header class="major gsp-books-section-header">
+        <h2>Companion Novels from the World of The Glass Spine</h2>
+      </header>
+
+      <p>
+        Beyond the main series, several companion novels are in development. Each one explores a different fracture point in the world of <em>The Glass Spine</em> — from the rise of the Black Choir and the architects of Project Tempath, to the rebels, survivors, and families caught in the machinery of control.
+      </p>
+
+      <div class="gsp-standalone-grid">
+        {% for b in all_books %}
+          {% assign book_category = b.book.category | default: "series" %}
+
+          {% if book_category == "companion" %}
+            {% assign book_desc = b.book.tagline | default: b.book.desc | default: "" %}
+            {% assign book_buy = b.book.buy_url | default: "" %}
+            {% assign is_coming = b.book.coming_soon | default: true %}
+            {% assign book_ebook = b.book.ebook_url | default: "" %}
+            {% assign book_paperback = b.book.paperback_url | default: "" %}
+
+            {% include book-card.html
+              cover=b.book.cover
+              title=b.book.title
+              status=b.book.status
+              release=b.book.release
+              desc=book_desc
+              details_url=b.url
+              buy_url=book_buy
+              ebook_url=book_ebook
+              paperback_url=book_paperback
+              coming_soon=is_coming
+            %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
 
   </div>
 </section>

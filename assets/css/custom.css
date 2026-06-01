@@ -697,11 +697,25 @@ iframe[src*="jotform"] {
 /* Meta column */
 .gsp-book-meta {
   flex: 1;
-  min-width: 240px;
+  min-width: 520px;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  max-width: 600px;
+}
+
+/* Meta column */
+.gsp-bookcard-meta {
+  flex: 1;
+  min-width: 300px;
+  padding: 0;
+  background: none;
+  border-radius: 0;
 }
 
 .gsp-book-actions {
   margin-top: 1rem;
+  min-width: 400px;
 }
 
 .gsp-book-actions .button {
@@ -1148,11 +1162,4 @@ body.gsp-modal-open {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   margin-top: 1.2rem;
   padding-top: 0.9rem;
-}
-
-.gsp-book-meta {
-  padding: 0;
-  background: none;
-  border-radius: 0;
-  max-width: 520px;
 }
